@@ -1,25 +1,38 @@
 package com.main;
 
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args){
-        Map map = new Map(Matrix.MAP);
+        GraphMap graphMap = new GraphMap(Matrix.MAP);
+        EmergencyHandler eh = new EmergencyHandler(graphMap);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("___ACAss___");
 
-        for (Node[] row:map.nodes) {
-            for (Node n:row) {
-                System.out.print(n);
+        boolean flag;
+        do {
+            flag = false;
+            System.out.println("Enter the position of emergency: [x;y]");
+            try{
+                scanner.reset();
+                String input = scanner.next();
+                eh.setCoordinates(input);
+            } catch (NoSuchElementException exception){
+                System.out.println("Invalid input");
+                flag=true;
+            } catch (RuntimeException exception){
+                System.out.println(exception.getMessage());
+                flag=true;
             }
-            System.out.println();
-        }
-        System.out.println("-------");
-        for (Node n :map.nodes[0][0].getPointers()) {
-            System.out.println(n);
-        }
-        System.out.println("-------");
-        for (Node n :map.nodes[2][2].getPointers()) {
-            System.out.println(n);
-        }
-
+        }while (flag);
+        System.out.println("Enter the emergency message: ");
+        scanner.nextLine();
+        String message = scanner.nextLine();
+        eh.setMessage(message);
+        eh.run();
+        scanner.close();
     }
 
 }

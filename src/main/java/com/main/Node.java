@@ -1,11 +1,17 @@
 package com.main;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+ /**Node of graphMap
+ * pointers - neighbour nodes
+ * cost - cost of passing through in time units
+ * position - position in graphMap (indeed is identifier of node)
+  * status - determines status of the node:
+  * [1 - simple road, 2 - police, 3 - medic, 4 - firefighter]
+ * */
 @Data
 public class Node {
 
@@ -14,17 +20,17 @@ public class Node {
     final int status;
     private final String position;
 
-    public Node(int status, String coordinates){
+    public Node(int status, String coordinates) {
         this.status = status;
         this.position = coordinates;
     }
 
-    public void add(Node node){
+    public void add(Node node) {
         pointers.add(node);
     }
 
-    public void setCost(int cost){
-        this.cost+=cost;
+    public void setCost(int cost) {
+        this.cost += cost;
     }
 
     @Override

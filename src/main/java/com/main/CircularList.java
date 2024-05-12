@@ -13,7 +13,8 @@ public class CircularList {
     }
 
     public int[][] next(){
-        return storage.get(++iterator);
+        if (++iterator==storage.size()) iterator = 0;
+        return storage.get(iterator);
     }
 
     public int[][] get(){

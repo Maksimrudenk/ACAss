@@ -27,7 +27,7 @@ public class Main {
         boolean flag;
         do {
             flag = false;
-            System.out.println("Enter the position of emergency: [x;y]");
+            System.out.println("Enter the position of emergency: x;y");
             try {
                 String input = scanner.next();
                 scanner.nextLine();
